@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- 指定SpringBoot 版本-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.13</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.hjc</groupId>
+    <artifactId>auth-backend</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <!-- 打包方式：pom-->
+    <packaging>pom</packaging>
+    <name>auth-backend</name>
+    <description>auth-backend</description>
+    <!-- 子模块 -->
+    <modules>
+        <module>auth-common</module>
+        <module>auth-model</module>
+        <module>auth-service-system</module>
+    </modules>
+    <!-- 指定版本 -->
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <mybatis-plus.version>3.5.7</mybatis-plus.version>
+        <mysql.version>8.0.30</mysql.version>
+        <knife4j.version>4.3.0</knife4j.version>
+        <jwt.version>0.7.0</jwt.version>
+        <fastjson2.version>2.0.51</fastjson2.version>
+        <spring-boot.version>2.6.13</spring-boot.version>
+        <pageHelper.version>5.3.2</pageHelper.version>
+        <auth.version>0.0.1-SNAPSHOT</auth.version>
+    </properties>
+
+    <!--配置dependencyManagement锁定依赖的版本-->
+    <dependencyManagement>
+        <dependencies>
+            <!--mybatis-plus 持久层-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!--mysql-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!--knife4j-->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <!--jjwt-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+            <!--fastjson2-->
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.version}</version>
+            </dependency>
+            <!-- pageHelper-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pageHelper.version}</version>
+            </dependency>
+            <!-- service模块工具类模块 -->
+            <dependency>
+                <groupId>com.hjc</groupId>
+                <artifactId>auth-common-util</artifactId>
+                <version>${auth.version}</version>
+            </dependency>
+            <!-- 核心工具类模块-->
+            <dependency>
+                <groupId>com.hjc</groupId>
+                <artifactId>auth-common-core</artifactId>
+                <version>${auth.version}</version>
+            </dependency>
+            <!-- 实体类模块 -->
+            <dependency>
+                <groupId>com.hjc</groupId>
+                <artifactId>auth-model</artifactId>
+                <version>${auth.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
