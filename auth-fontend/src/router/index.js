@@ -65,7 +65,14 @@ export const constantRoutes = [
     },
     alwaysShow: true,
     children: [
-
+      {
+        path: 'sysRole',
+        component: ()=> import('@/views/system/sysRole/list'),
+        meta: {
+          title: '角色管理',
+          icon: 'el-icon-user-solid'
+        }
+      }
     ]
   },
 
