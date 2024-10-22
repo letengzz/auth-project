@@ -72,7 +72,16 @@ export const constantRoutes = [
           title: '角色管理',
           icon: 'el-icon-user-solid'
         }
-      }
+      },
+      {
+        name: 'sysUser',
+        path: 'sysUser',
+        component: () => import('@/views/system/sysUser/list'),
+        meta: {
+          title: '用户管理',
+          icon: 'el-icon-s-custom'
+        },
+      },
     ]
   },
 

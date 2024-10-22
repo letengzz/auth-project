@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hjc.entity.resp.Result;
 import com.hjc.model.SysRole;
+import com.hjc.model.vo.AssignRoleVo;
 import com.hjc.model.vo.SysRoleQueryVo;
 import com.hjc.service.SysRoleService;
 import io.swagger.annotations.Api;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 角色管理
@@ -91,4 +93,21 @@ public class SysRoleController {
         }
     }
 
+    @ApiOperation(value = "根据用户获取角色数据")
+    @GetMapping("/toAssign/{userId}")
+    public Result<Map<String, Object>> toAssign(@PathVariable Long userId) {
+        Map<String, Object> roleMap = sysRoleService.getRolesByUserId(userId);
+        return Result.ok(roleMap);
+    }
+
+    @ApiOperation(value = "根据用户分配角色")
+    @PostMapping("/doAssign")
+    public Result<Void> doAssign(@RequestBody AssignRoleVo assignRoleVo) {
+        boolean isSuccess = sysRoleService.doAssign(assignRoleVo);
+        if (isSuccess) {
+            return Result.ok();
+        } else {
+            return Result.fail();
+        }
+    }
 }
