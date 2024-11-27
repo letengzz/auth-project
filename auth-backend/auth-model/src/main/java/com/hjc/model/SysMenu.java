@@ -6,14 +6,19 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hjc.model.base.BaseEntity;
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 菜单表
+ * @author hjc
  * @TableName sys_menu
  */
-@TableName(value ="sys_menu")
 @Data
+@TableName(value ="sys_menu")
+@EqualsAndHashCode(callSuper = true)
 public class SysMenu extends BaseEntity implements Serializable {
     /**
      * 所属上级
@@ -58,7 +63,14 @@ public class SysMenu extends BaseEntity implements Serializable {
     /**
      * 状态(0:禁止,1:正常)
      */
-    private Integer status;
+    private Byte status;
+
+    // 下级列表
+    @TableField(exist = false)
+    private List<SysMenu> children;
+    //是否选中
+    @TableField(exist = false)
+    private boolean isSelect;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
